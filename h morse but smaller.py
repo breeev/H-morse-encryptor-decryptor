@@ -11,7 +11,7 @@ MORSE_CODE_DICT = { 'A':'hH', 'B':'Hhhh',
 					'1':'hHHHH', '2':'hhHHH', '3':'hhhHH',
 					'4':'hhhhH', '5':'hhhhh', '6':'Hhhhh',
 					'7':'HHhhh', '8':'HHHhh', '9':'HHHHh',
-					'0':'HHHHH', ', ':'HHhhHH', '.':'hHhHhH',
+					'0':'HHHHH', ',':'HHhhHH', '.':'hHhHhH',
 					'?':'hhHHhh', '/':'HhhHh', '-':'HhhhhH',
 					'(':'HhHHh', ')':'HhHHhH'}
 
@@ -74,9 +74,14 @@ def decrypt(message):
 
 	return decipher
 
+def digest(string):
+    for l in string:
+        if l not in MORSE_CODE_DICT:string=string.replace(l,'-')
+    return string
+
 def encr():
         outbox.delete("1.0", "end")
-        outbox.insert(END,encrypt(inbox.get().upper()))
+        outbox.insert(END,encrypt(digest(inbox.get().upper())))
 
 def decr():
         outbox.delete("1.0", "end")
