@@ -65,18 +65,21 @@ def decrypt(message):
 
 				# adding space to separate words
 				decipher += ' '
-			else:
+			elif '\n' not in citext:
 
 				# accessing the keys using their values (reverse of encryption)
 				decipher += list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT
 				.values()).index(citext)]
+				citext = ''
+			else:
+				decipher+=citext
 				citext = ''
 
 	return decipher
 
 def digest(string):
     for l in string:
-        if l not in MORSE_CODE_DICT:string=string.replace(l,'-')
+        if l not in MORSE_CODE_DICT and l!=' ':string=string.replace(l,'-')
     return string
 
 def encr():
